@@ -54,10 +54,10 @@ echo "OK."
 
 # At first, security update.
 aptitude update
-aptitude safe-upgrade -R
+aptitude safe-upgrade -yR
 
 # Install some packages
-aptitude install -R ssh zsh vim debconf-utils
+aptitude install -yR ssh zsh vim debconf-utils
 rm /etc/skel/.bash* || true
 touch /etc/skel/.zshrc
 
@@ -70,7 +70,7 @@ echo "krb5-config     krb5-config/kerberos_servers    string local.bgp.ne.jp" | 
 echo "krb5-config     krb5-config/default_realm       string  LOCAL.BGP.NE.JP" | debconf-set-selections
 
 # Install AD-related packages
-aptitude install -R krb5-config winbind libnss-winbind libpam-winbind
+aptitude install -yR krb5-config winbind libnss-winbind libpam-winbind
 
 # Disabled smbd
 sed -i "s/^start/#start/g" /etc/init/smbd.conf
